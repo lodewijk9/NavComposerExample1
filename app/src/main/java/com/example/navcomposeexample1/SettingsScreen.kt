@@ -3,7 +3,6 @@ package com.example.navcomposeexample1
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -12,30 +11,18 @@ import androidx.compose.ui.unit.sp
 import com.example.navcomposeexample1.core.navigation.SettingsInfo
 
 @Composable
-fun DetailScreen(name:String, navigateBack:()->Unit, navigateToSettings:(SettingsInfo)->Unit) {
+fun SettingsScreen(settingsInfo: SettingsInfo) {
     Column (
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.weight(1f))
-        Text(text = "Detail Screen $name", fontSize = 25.sp)
+        Text(text = "Settings Screen", fontSize = 25.sp)
+        Text(text = settingsInfo.name)
+        Text(text = settingsInfo.id.toString())
+        Text(text = settingsInfo.darkMode.toString())
+        Text(text = settingsInfo.subscribe.toString())
         Spacer(modifier = Modifier.weight(1f))
 
-        Button(onClick = {
-            val settingsInfo = SettingsInfo(name="Lodewijk", id = 1, darkMode = true, subscribe = true)
-            navigateToSettings(settingsInfo)
-        }) {
-            Text(
-                text = "Go to Settings"
-            )
-        }
-        Spacer(modifier = Modifier.weight(1f))
-
-        Button(onClick = { navigateBack() }) {
-            Text(
-                text = "Log Out"
-            )
-        }
-        Spacer(modifier = Modifier.weight(1f))
     }
 }
